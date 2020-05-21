@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.DataSourceMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.DataSource">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="datasource" jdbcType="VARCHAR" property="datasource" />
+    <result column="dbType" jdbcType="VARCHAR" property="dbtype" />
+    <result column="dbUrl" jdbcType="VARCHAR" property="dburl" />
+    <result column="untitled3" jdbcType="VARCHAR" property="untitled3" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.fline.datasecurity.zj.dao.entity.DataSource">
+    <result column="untitled2" jdbcType="LONGVARCHAR" property="untitled2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, datasource, dbType, dbUrl, untitled3, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    untitled2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from c_data_source
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_data_source
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.DataSource">
+    insert into c_data_source (id, datasource, dbType, 
+      dbUrl, untitled3, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+      untitled2)
+    values (#{id,jdbcType=INTEGER}, #{datasource,jdbcType=VARCHAR}, #{dbtype,jdbcType=VARCHAR}, 
+      #{dburl,jdbcType=VARCHAR}, #{untitled3,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{untitled2,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataSource">
+    insert into c_data_source
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="datasource != null">
+        datasource,
+      </if>
+      <if test="dbtype != null">
+        dbType,
+      </if>
+      <if test="dburl != null">
+        dbUrl,
+      </if>
+      <if test="untitled3 != null">
+        untitled3,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="untitled2 != null">
+        untitled2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="datasource != null">
+        #{datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtype != null">
+        #{dbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="dburl != null">
+        #{dburl,jdbcType=VARCHAR},
+      </if>
+      <if test="untitled3 != null">
+        #{untitled3,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="untitled2 != null">
+        #{untitled2,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataSource">
+    update c_data_source
+    <set>
+      <if test="datasource != null">
+        datasource = #{datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtype != null">
+        dbType = #{dbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="dburl != null">
+        dbUrl = #{dburl,jdbcType=VARCHAR},
+      </if>
+      <if test="untitled3 != null">
+        untitled3 = #{untitled3,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="untitled2 != null">
+        untitled2 = #{untitled2,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fline.datasecurity.zj.dao.entity.DataSource">
+    update c_data_source
+    set datasource = #{datasource,jdbcType=VARCHAR},
+      dbType = #{dbtype,jdbcType=VARCHAR},
+      dbUrl = #{dburl,jdbcType=VARCHAR},
+      untitled3 = #{untitled3,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      untitled2 = #{untitled2,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.DataSource">
+    update c_data_source
+    set datasource = #{datasource,jdbcType=VARCHAR},
+      dbType = #{dbtype,jdbcType=VARCHAR},
+      dbUrl = #{dburl,jdbcType=VARCHAR},
+      untitled3 = #{untitled3,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

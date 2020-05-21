@@ -1,0 +1,67 @@
+#端口号
+server:
+  port: 8018
+  servlet:
+    context-path: /webdemo
+# 日志配置
+logging:
+  config: classpath:system/log4j2.xml
+  level:
+    org.springframework.boot.autoconfigure: ERROR
+# Spring 相关配置
+spring:
+  application:
+    name: webdemo #服务名
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:system/ehcache.xml
+  jmx: 
+    enabled: false
+  servlet: 
+    multipart: 
+      max-file-size: -1
+      max-request-size: -1
+  redis:
+    cluster:
+      nodes: 172.16.1.203:6379,172.16.1.203:6380,172.16.1.203:6381,172.16.1.203:6382,172.16.1.203:6383,172.16.1.203:6384
+    timeout: 0
+    commandTimeout: 5000
+    password: HKkNPyreV0aAtdP0Ec/3Gw==
+    pool:
+      max-idle: 100
+      min-idle: 10
+      max-active: 1000
+      max-wait: -1
+  kafka:
+    bootstrap-servers: 47.110.224.137:9092
+    consumer:
+      group-id: fline88
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+# Mybatis 配置
+mybatis-plus:
+  config-location: classpath:dao/mybatis-config.xml
+  mapper-locations: classpath:dao/mapper/*.xml
+  type-aliases-package: com.fline.webdemo
+  
+# 微服务的服务发现配置
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: http://172.16.21.53:28761/eureka/
+#   instance:
+#     prefer-ip-address: true
+    
+daas:
+  apiservice:
+    url: http://172.16.1.223:9001/aic/rest/query
+    refreshsecreturl: http://172.16.1.223:9001/aic/rest/service/safety/refreshsecret
+    tenantusername: U0022Z0001
+    tenantpassword: 123456
+  fdmp:
+    db:
+      url: jdbc:mysql://172.16.23.199:3308/aic_trunk?serverTimezone=UTC
+      username: fline
+      password: flineCloud@2019root
+

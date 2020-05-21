@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.SecuritySingleMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.SecuritySingle">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="taskCode" jdbcType="VARCHAR" property="taskcode" />
+    <result column="originalData" jdbcType="VARCHAR" property="originaldata" />
+    <result column="secretKey" jdbcType="VARCHAR" property="secretkey" />
+    <result column="ciphertext" jdbcType="VARCHAR" property="ciphertext" />
+    <result column="operation" jdbcType="INTEGER" property="operation" />
+    <result column="dataLevel" jdbcType="VARCHAR" property="datalevel" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, taskCode, originalData, secretKey, ciphertext, operation, dataLevel, CREATED_BY, 
+    CREATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_security_single
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_security_single
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.SecuritySingle">
+    insert into c_security_single (id, taskCode, originalData, 
+      secretKey, ciphertext, operation, 
+      dataLevel, CREATED_BY, CREATED_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{taskcode,jdbcType=VARCHAR}, #{originaldata,jdbcType=VARCHAR}, 
+      #{secretkey,jdbcType=VARCHAR}, #{ciphertext,jdbcType=VARCHAR}, #{operation,jdbcType=INTEGER}, 
+      #{datalevel,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.SecuritySingle">
+    insert into c_security_single
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskcode != null">
+        taskCode,
+      </if>
+      <if test="originaldata != null">
+        originalData,
+      </if>
+      <if test="secretkey != null">
+        secretKey,
+      </if>
+      <if test="ciphertext != null">
+        ciphertext,
+      </if>
+      <if test="operation != null">
+        operation,
+      </if>
+      <if test="datalevel != null">
+        dataLevel,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskcode != null">
+        #{taskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="originaldata != null">
+        #{originaldata,jdbcType=VARCHAR},
+      </if>
+      <if test="secretkey != null">
+        #{secretkey,jdbcType=VARCHAR},
+      </if>
+      <if test="ciphertext != null">
+        #{ciphertext,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=INTEGER},
+      </if>
+      <if test="datalevel != null">
+        #{datalevel,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.SecuritySingle">
+    update c_security_single
+    <set>
+      <if test="taskcode != null">
+        taskCode = #{taskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="originaldata != null">
+        originalData = #{originaldata,jdbcType=VARCHAR},
+      </if>
+      <if test="secretkey != null">
+        secretKey = #{secretkey,jdbcType=VARCHAR},
+      </if>
+      <if test="ciphertext != null">
+        ciphertext = #{ciphertext,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null">
+        operation = #{operation,jdbcType=INTEGER},
+      </if>
+      <if test="datalevel != null">
+        dataLevel = #{datalevel,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.SecuritySingle">
+    update c_security_single
+    set taskCode = #{taskcode,jdbcType=VARCHAR},
+      originalData = #{originaldata,jdbcType=VARCHAR},
+      secretKey = #{secretkey,jdbcType=VARCHAR},
+      ciphertext = #{ciphertext,jdbcType=VARCHAR},
+      operation = #{operation,jdbcType=INTEGER},
+      dataLevel = #{datalevel,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

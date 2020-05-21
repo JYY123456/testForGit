@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.DesensitiveTaskMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.DesensitiveTask">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="taskCode" jdbcType="VARCHAR" property="taskcode" />
+    <result column="dataSource" jdbcType="VARCHAR" property="datasource" />
+    <result column="executeUserLevel" jdbcType="VARCHAR" property="executeuserlevel" />
+    <result column="executeUserName" jdbcType="VARCHAR" property="executeusername" />
+    <result column="operationTables" jdbcType="VARCHAR" property="operationtables" />
+    <result column="desensitizationTemp" jdbcType="VARCHAR" property="desensitizationtemp" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="targetLocation" jdbcType="VARCHAR" property="targetlocation" />
+    <result column="validTime" jdbcType="VARCHAR" property="validtime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="isApproval" jdbcType="INTEGER" property="isapproval" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, taskCode, dataSource, executeUserLevel, executeUserName, operationTables, desensitizationTemp, 
+    type, targetLocation, validTime, state, isApproval, CREATED_BY, CREATED_TIME, UPDATED_BY, 
+    UPDATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_desensitization_task
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_desensitization_task
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTask">
+    insert into c_desensitization_task (id, taskCode, dataSource, 
+      executeUserLevel, executeUserName, operationTables, 
+      desensitizationTemp, type, targetLocation, 
+      validTime, state, isApproval, 
+      CREATED_BY, CREATED_TIME, UPDATED_BY, 
+      UPDATED_TIME)
+    values (#{id,jdbcType=INTEGER}, #{taskcode,jdbcType=VARCHAR}, #{datasource,jdbcType=VARCHAR}, 
+      #{executeuserlevel,jdbcType=VARCHAR}, #{executeusername,jdbcType=VARCHAR}, #{operationtables,jdbcType=VARCHAR}, 
+      #{desensitizationtemp,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{targetlocation,jdbcType=VARCHAR}, 
+      #{validtime,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{isapproval,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTask">
+    insert into c_desensitization_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskcode != null">
+        taskCode,
+      </if>
+      <if test="datasource != null">
+        dataSource,
+      </if>
+      <if test="executeuserlevel != null">
+        executeUserLevel,
+      </if>
+      <if test="executeusername != null">
+        executeUserName,
+      </if>
+      <if test="operationtables != null">
+        operationTables,
+      </if>
+      <if test="desensitizationtemp != null">
+        desensitizationTemp,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="targetlocation != null">
+        targetLocation,
+      </if>
+      <if test="validtime != null">
+        validTime,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="isapproval != null">
+        isApproval,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskcode != null">
+        #{taskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="datasource != null">
+        #{datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="executeuserlevel != null">
+        #{executeuserlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="executeusername != null">
+        #{executeusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtables != null">
+        #{operationtables,jdbcType=VARCHAR},
+      </if>
+      <if test="desensitizationtemp != null">
+        #{desensitizationtemp,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="targetlocation != null">
+        #{targetlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="validtime != null">
+        #{validtime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isapproval != null">
+        #{isapproval,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTask">
+    update c_desensitization_task
+    <set>
+      <if test="taskcode != null">
+        taskCode = #{taskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="datasource != null">
+        dataSource = #{datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="executeuserlevel != null">
+        executeUserLevel = #{executeuserlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="executeusername != null">
+        executeUserName = #{executeusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtables != null">
+        operationTables = #{operationtables,jdbcType=VARCHAR},
+      </if>
+      <if test="desensitizationtemp != null">
+        desensitizationTemp = #{desensitizationtemp,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="targetlocation != null">
+        targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="validtime != null">
+        validTime = #{validtime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isapproval != null">
+        isApproval = #{isapproval,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTask">
+    update c_desensitization_task
+    set taskCode = #{taskcode,jdbcType=VARCHAR},
+      dataSource = #{datasource,jdbcType=VARCHAR},
+      executeUserLevel = #{executeuserlevel,jdbcType=VARCHAR},
+      executeUserName = #{executeusername,jdbcType=VARCHAR},
+      operationTables = #{operationtables,jdbcType=VARCHAR},
+      desensitizationTemp = #{desensitizationtemp,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      validTime = #{validtime,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      isApproval = #{isapproval,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

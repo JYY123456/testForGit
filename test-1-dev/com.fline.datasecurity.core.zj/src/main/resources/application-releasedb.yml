@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://121.40.214.176:3306/webdev?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: 'dxC1aTkJml4KjXKVs1+9Yg==' #dxC1aTkJml4KjXKVs1+9Yg==
+    password: 'xu85zIBUpG5sBafsk8KUtA==' #xu85zIBUpG5sBafsk8KUtA==
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      filters: stat
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 1000
+      web-stat-filter:
+        enabled: true
+        url-pattern: '/druid/*'
+      stat-view-servlet:
+        enabled: true
+        login-username: ${spring.datasource.username}
+        login-password: ${spring.datasource.password}

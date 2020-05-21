@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.DesensitiveDataRecordMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.DesensitiveDataRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user" jdbcType="INTEGER" property="user" />
+    <result column="userLevel" jdbcType="VARCHAR" property="userlevel" />
+    <result column="taskRecordId" jdbcType="INTEGER" property="taskrecordid" />
+    <result column="dataResourceId" jdbcType="VARCHAR" property="dataresourceid" />
+    <result column="dataFields" jdbcType="VARCHAR" property="datafields" />
+    <result column="targetLocation" jdbcType="VARCHAR" property="targetlocation" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="templateId" jdbcType="INTEGER" property="templateid" />
+    <result column="methodId" jdbcType="INTEGER" property="methodid" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user, userLevel, taskRecordId, dataResourceId, dataFields, targetLocation, type, 
+    templateId, methodId, CREATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_desensitization_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_desensitization_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveDataRecord">
+    insert into c_desensitization_data_record (id, user, userLevel, 
+      taskRecordId, dataResourceId, dataFields, 
+      targetLocation, type, templateId, 
+      methodId, CREATED_TIME)
+    values (#{id,jdbcType=INTEGER}, #{user,jdbcType=INTEGER}, #{userlevel,jdbcType=VARCHAR}, 
+      #{taskrecordid,jdbcType=INTEGER}, #{dataresourceid,jdbcType=VARCHAR}, #{datafields,jdbcType=VARCHAR}, 
+      #{targetlocation,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{templateid,jdbcType=INTEGER}, 
+      #{methodid,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveDataRecord">
+    insert into c_desensitization_data_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="user != null">
+        user,
+      </if>
+      <if test="userlevel != null">
+        userLevel,
+      </if>
+      <if test="taskrecordid != null">
+        taskRecordId,
+      </if>
+      <if test="dataresourceid != null">
+        dataResourceId,
+      </if>
+      <if test="datafields != null">
+        dataFields,
+      </if>
+      <if test="targetlocation != null">
+        targetLocation,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="templateid != null">
+        templateId,
+      </if>
+      <if test="methodid != null">
+        methodId,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=INTEGER},
+      </if>
+      <if test="userlevel != null">
+        #{userlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="taskrecordid != null">
+        #{taskrecordid,jdbcType=INTEGER},
+      </if>
+      <if test="dataresourceid != null">
+        #{dataresourceid,jdbcType=VARCHAR},
+      </if>
+      <if test="datafields != null">
+        #{datafields,jdbcType=VARCHAR},
+      </if>
+      <if test="targetlocation != null">
+        #{targetlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="templateid != null">
+        #{templateid,jdbcType=INTEGER},
+      </if>
+      <if test="methodid != null">
+        #{methodid,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveDataRecord">
+    update c_desensitization_data_record
+    <set>
+      <if test="user != null">
+        user = #{user,jdbcType=INTEGER},
+      </if>
+      <if test="userlevel != null">
+        userLevel = #{userlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="taskrecordid != null">
+        taskRecordId = #{taskrecordid,jdbcType=INTEGER},
+      </if>
+      <if test="dataresourceid != null">
+        dataResourceId = #{dataresourceid,jdbcType=VARCHAR},
+      </if>
+      <if test="datafields != null">
+        dataFields = #{datafields,jdbcType=VARCHAR},
+      </if>
+      <if test="targetlocation != null">
+        targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="templateid != null">
+        templateId = #{templateid,jdbcType=INTEGER},
+      </if>
+      <if test="methodid != null">
+        methodId = #{methodid,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveDataRecord">
+    update c_desensitization_data_record
+    set user = #{user,jdbcType=INTEGER},
+      userLevel = #{userlevel,jdbcType=VARCHAR},
+      taskRecordId = #{taskrecordid,jdbcType=INTEGER},
+      dataResourceId = #{dataresourceid,jdbcType=VARCHAR},
+      dataFields = #{datafields,jdbcType=VARCHAR},
+      targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      templateId = #{templateid,jdbcType=INTEGER},
+      methodId = #{methodid,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

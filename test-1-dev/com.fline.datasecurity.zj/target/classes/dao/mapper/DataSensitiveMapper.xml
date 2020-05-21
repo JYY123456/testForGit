@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.DataSensitiveMapper">
+  <resultMap id="dataSensitiveMap" type="com.fline.datasecurity.zj.dao.entity.DataSensitive">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dataRule" jdbcType="VARCHAR" property="datarule" />
+    <result column="dataRuleSign" jdbcType="VARCHAR" property="datarulesign" />
+    <result column="dataLevel" jdbcType="INTEGER" property="datalevel" />
+    <result column="dataCategory" jdbcType="INTEGER" property="datacategory" />
+    <result column="dataSource" jdbcType="VARCHAR" property="datasource" />
+    <result column="distinguishTime" jdbcType="VARCHAR" property="distinguishtime" />
+    <result column="isActive" jdbcType="INTEGER" property="isactive" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dataRule, dataRuleSign, dataLevel, dataCategory, dataSource, distinguishTime, 
+    isActive, CREATED_BY, CREATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="dataSensitiveMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_data_sensitive
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_data_sensitive
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitive">
+    insert into c_data_sensitive (id, dataRule, dataRuleSign, 
+      dataLevel, dataCategory, dataSource, 
+      distinguishTime, isActive, CREATED_BY, 
+      CREATED_TIME)
+    values (#{id,jdbcType=INTEGER}, #{datarule,jdbcType=VARCHAR}, #{datarulesign,jdbcType=VARCHAR}, 
+      #{datalevel,jdbcType=INTEGER}, #{datacategory,jdbcType=INTEGER}, #{datasource,jdbcType=VARCHAR}, 
+      #{distinguishtime,jdbcType=VARCHAR}, #{isactive,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitive">
+    insert into c_data_sensitive
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="datarule != null">
+        dataRule,
+      </if>
+      <if test="datarulesign != null">
+        dataRuleSign,
+      </if>
+      <if test="datalevel != null">
+        dataLevel,
+      </if>
+      <if test="datacategory != null">
+        dataCategory,
+      </if>
+      <if test="datasource != null">
+        dataSource,
+      </if>
+      <if test="distinguishtime != null">
+        distinguishTime,
+      </if>
+      <if test="isactive != null">
+        isActive,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="datarule != null">
+        #{datarule,jdbcType=VARCHAR},
+      </if>
+      <if test="datarulesign != null">
+        #{datarulesign,jdbcType=VARCHAR},
+      </if>
+      <if test="datalevel != null">
+        #{datalevel,jdbcType=INTEGER},
+      </if>
+      <if test="datacategory != null">
+        #{datacategory,jdbcType=INTEGER},
+      </if>
+      <if test="datasource != null">
+        #{datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="distinguishtime != null">
+        #{distinguishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitive">
+    update c_data_sensitive
+    <set>
+      <if test="datarule != null">
+        dataRule = #{datarule,jdbcType=VARCHAR},
+      </if>
+      <if test="datarulesign != null">
+        dataRuleSign = #{datarulesign,jdbcType=VARCHAR},
+      </if>
+      <if test="datalevel != null">
+        dataLevel = #{datalevel,jdbcType=INTEGER},
+      </if>
+      <if test="datacategory != null">
+        dataCategory = #{datacategory,jdbcType=INTEGER},
+      </if>
+      <if test="datasource != null">
+        dataSource = #{datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="distinguishtime != null">
+        distinguishTime = #{distinguishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isActive = #{isactive,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitive">
+    update c_data_sensitive
+    set dataRule = #{datarule,jdbcType=VARCHAR},
+      dataRuleSign = #{datarulesign,jdbcType=VARCHAR},
+      dataLevel = #{datalevel,jdbcType=INTEGER},
+      dataCategory = #{datacategory,jdbcType=INTEGER},
+      dataSource = #{datasource,jdbcType=VARCHAR},
+      distinguishTime = #{distinguishtime,jdbcType=VARCHAR},
+      isActive = #{isactive,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

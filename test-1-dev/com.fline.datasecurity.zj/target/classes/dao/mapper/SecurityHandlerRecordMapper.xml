@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.SecurityHandlerRecordMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.SecurityHandlerRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="taskCode" jdbcType="VARCHAR" property="taskcode" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+    <result column="opTime" jdbcType="TIMESTAMP" property="optime" />
+    <result column="opUser" jdbcType="INTEGER" property="opuser" />
+    <result column="datasource" jdbcType="INTEGER" property="datasource" />
+    <result column="targetLocation" jdbcType="VARCHAR" property="targetlocation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, taskCode, operation, opTime, opUser, datasource, targetLocation
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_security_handler_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_security_handler_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.SecurityHandlerRecord">
+    insert into c_security_handler_record (id, taskCode, operation, 
+      opTime, opUser, datasource, 
+      targetLocation)
+    values (#{id,jdbcType=INTEGER}, #{taskcode,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, 
+      #{optime,jdbcType=TIMESTAMP}, #{opuser,jdbcType=INTEGER}, #{datasource,jdbcType=INTEGER}, 
+      #{targetlocation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.SecurityHandlerRecord">
+    insert into c_security_handler_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskcode != null">
+        taskCode,
+      </if>
+      <if test="operation != null">
+        operation,
+      </if>
+      <if test="optime != null">
+        opTime,
+      </if>
+      <if test="opuser != null">
+        opUser,
+      </if>
+      <if test="datasource != null">
+        datasource,
+      </if>
+      <if test="targetlocation != null">
+        targetLocation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskcode != null">
+        #{taskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="optime != null">
+        #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opuser != null">
+        #{opuser,jdbcType=INTEGER},
+      </if>
+      <if test="datasource != null">
+        #{datasource,jdbcType=INTEGER},
+      </if>
+      <if test="targetlocation != null">
+        #{targetlocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.SecurityHandlerRecord">
+    update c_security_handler_record
+    <set>
+      <if test="taskcode != null">
+        taskCode = #{taskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null">
+        operation = #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="optime != null">
+        opTime = #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opuser != null">
+        opUser = #{opuser,jdbcType=INTEGER},
+      </if>
+      <if test="datasource != null">
+        datasource = #{datasource,jdbcType=INTEGER},
+      </if>
+      <if test="targetlocation != null">
+        targetLocation = #{targetlocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.SecurityHandlerRecord">
+    update c_security_handler_record
+    set taskCode = #{taskcode,jdbcType=VARCHAR},
+      operation = #{operation,jdbcType=VARCHAR},
+      opTime = #{optime,jdbcType=TIMESTAMP},
+      opUser = #{opuser,jdbcType=INTEGER},
+      datasource = #{datasource,jdbcType=INTEGER},
+      targetLocation = #{targetlocation,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

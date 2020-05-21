@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.DataTypeFiledMapper">
+  <resultMap id="dataTypeFiledMap" type="com.fline.datasecurity.zj.dao.entity.DataTypeFiled">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dataType" jdbcType="VARCHAR" property="datatype" />
+    <result column="dataTypeCode" jdbcType="VARCHAR" property="datatypecode" />
+    <result column="dataFields" jdbcType="VARCHAR" property="datafields" />
+    <result column="dataFieldName" jdbcType="VARCHAR" property="datafieldname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dataType, dataTypeCode, dataFields, dataFieldName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="dataTypeFiledMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_data_type_filed
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_data_type_filed
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.DataTypeFiled">
+    insert into c_data_type_filed (id, dataType, dataTypeCode, 
+      dataFields, dataFieldName)
+    values (#{id,jdbcType=INTEGER}, #{datatype,jdbcType=VARCHAR}, #{datatypecode,jdbcType=VARCHAR}, 
+      #{datafields,jdbcType=VARCHAR}, #{datafieldname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataTypeFiled">
+    insert into c_data_type_filed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="datatype != null">
+        dataType,
+      </if>
+      <if test="datatypecode != null">
+        dataTypeCode,
+      </if>
+      <if test="datafields != null">
+        dataFields,
+      </if>
+      <if test="datafieldname != null">
+        dataFieldName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="datatype != null">
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="datatypecode != null">
+        #{datatypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="datafields != null">
+        #{datafields,jdbcType=VARCHAR},
+      </if>
+      <if test="datafieldname != null">
+        #{datafieldname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataTypeFiled">
+    update c_data_type_filed
+    <set>
+      <if test="datatype != null">
+        dataType = #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="datatypecode != null">
+        dataTypeCode = #{datatypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="datafields != null">
+        dataFields = #{datafields,jdbcType=VARCHAR},
+      </if>
+      <if test="datafieldname != null">
+        dataFieldName = #{datafieldname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.DataTypeFiled">
+    update c_data_type_filed
+    set dataType = #{datatype,jdbcType=VARCHAR},
+      dataTypeCode = #{datatypecode,jdbcType=VARCHAR},
+      dataFields = #{datafields,jdbcType=VARCHAR},
+      dataFieldName = #{datafieldname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

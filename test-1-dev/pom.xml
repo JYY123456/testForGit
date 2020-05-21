@@ -1,0 +1,229 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.fline</groupId>
+	<artifactId>datasecurity-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<fline.framework.version>1.0.0-SNAPSHOT</fline.framework.version>
+		<jedis.version>2.9.0</jedis.version>
+		<!-- 和springboot本身自带的相匹配 -->
+		<log4j.version>2.11.2</log4j.version>
+		<jackson-databind.version>2.9.9</jackson-databind.version>
+
+		<slf4j.version>1.7.26</slf4j.version>
+		<hadoop.version>2.7.3</hadoop.version>
+		<hbase.version>1.1.2</hbase.version>
+		<kafka.version> 1.0.0</kafka.version>
+		<storm.version>1.1.0</storm.version>
+		<scala.version>2.11.0-M4</scala.version>
+		<spark.version>2.3.0</spark.version>
+		<lz4.version>1.3.0</lz4.version>
+		<netty.version>4.1.17.Final</netty.version>
+		<springboot.version>2.1.8.RELEASE</springboot.version>
+		<spring-kafka.version>2.2.6.RELEASE</spring-kafka.version>
+		<lombok.version>1.18.4</lombok.version>
+		<httpclient.version>4.5.6</httpclient.version>
+		<druid.version>1.1.18</druid.version>
+		<bcprov.version>1.56</bcprov.version>
+		<ehcache.version>2.10.4</ehcache.version>
+		<mysql-connector.version>5.1.29</mysql-connector.version>
+		<mybatis-springboot.version>2.1.0</mybatis-springboot.version>
+		<mybatis-plus-springboot.version>3.1.2</mybatis-plus-springboot.version>
+		<poi.version>4.1.0</poi.version>
+		<!-- 基础包 -->
+		<hutool.version>4.5.16</hutool.version>
+		<commons-lang.version>3.9</commons-lang.version>
+		<commons-collection.version>4.4</commons-collection.version>
+		<fastjson.version>1.2.62</fastjson.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- 编译版本 -->
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+		<!-- mvn私服配置 -->
+		<mvn.realse.repo>http://121.40.214.176:8081/nexus/content/repositories/releases/</mvn.realse.repo>
+		<mvn.debug.repo>http://121.40.214.176:8081/nexus/content/repositories/snapshots/</mvn.debug.repo>
+	</properties>
+
+	<!-- 发布到Maven 私服 -->
+	<distributionManagement>
+		<repository>
+			<id>fline-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>${mvn.realse.repo}</url>
+		</repository>
+		<snapshotRepository>
+			<id>fline-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>${mvn.debug.repo}/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${springboot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<!-- log4j config -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.jpountz.lz4</groupId>
+				<artifactId>lz4</artifactId>
+				<version>${lz4.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid-spring-boot-starter</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus-springboot.version}</version>
+			</dependency>
+			<!-- 加密模块需要 -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${bcprov.version}</version>
+			</dependency>
+			<!-- 基础包 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<!-- springCloud -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Greenwich.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- fline.framework -->
+			<dependency>
+				<groupId>com.fline</groupId>
+				<artifactId>datasecurity.zj</artifactId>
+				<version>${fline.framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<modules>
+		<module>com.fline.datasecurity.zj</module>
+		<module>com.fline.datasecurity.core.zj</module>
+	</modules>
+	<profiles>
+		<!-- 开发配置 -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profileActive>dev</profileActive>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<!-- 外网运行配置 -->
+		<profile>
+			<id>release</id>
+			<properties>
+				<profileActive>release</profileActive>
+			</properties>
+		</profile>
+	</profiles>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>validate-the-git-infos</id>
+						<goals>
+							<goal>validateRevision</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

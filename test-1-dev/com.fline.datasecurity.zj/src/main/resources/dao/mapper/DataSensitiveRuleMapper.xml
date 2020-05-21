@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.DataSensitiveRuleMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.DataSensitiveRule">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ruleName" jdbcType="VARCHAR" property="rulename" />
+    <result column="ruleCode" jdbcType="VARCHAR" property="rulecode" />
+    <result column="template" jdbcType="VARCHAR" property="template" />
+    <result column="fieldNames" jdbcType="VARCHAR" property="fieldnames" />
+    <result column="isActive" jdbcType="INTEGER" property="isactive" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.fline.datasecurity.zj.dao.entity.DataSensitiveRule">
+    <result column="ruleDescribe" jdbcType="LONGVARCHAR" property="ruledescribe" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ruleName, ruleCode, template, fieldNames, isActive, CREATED_BY, CREATED_TIME, 
+    UPDATED_BY, UPDATED_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    ruleDescribe
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from c_data_sensitive_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_data_sensitive_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitiveRule">
+    insert into c_data_sensitive_rule (id, ruleName, ruleCode, 
+      template, fieldNames, isActive, 
+      CREATED_BY, CREATED_TIME, UPDATED_BY, 
+      UPDATED_TIME, ruleDescribe)
+    values (#{id,jdbcType=INTEGER}, #{rulename,jdbcType=VARCHAR}, #{rulecode,jdbcType=VARCHAR}, 
+      #{template,jdbcType=VARCHAR}, #{fieldnames,jdbcType=VARCHAR}, #{isactive,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{ruledescribe,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitiveRule">
+    insert into c_data_sensitive_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rulename != null">
+        ruleName,
+      </if>
+      <if test="rulecode != null">
+        ruleCode,
+      </if>
+      <if test="template != null">
+        template,
+      </if>
+      <if test="fieldnames != null">
+        fieldNames,
+      </if>
+      <if test="isactive != null">
+        isActive,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="ruledescribe != null">
+        ruleDescribe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rulename != null">
+        #{rulename,jdbcType=VARCHAR},
+      </if>
+      <if test="rulecode != null">
+        #{rulecode,jdbcType=VARCHAR},
+      </if>
+      <if test="template != null">
+        #{template,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldnames != null">
+        #{fieldnames,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruledescribe != null">
+        #{ruledescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitiveRule">
+    update c_data_sensitive_rule
+    <set>
+      <if test="rulename != null">
+        ruleName = #{rulename,jdbcType=VARCHAR},
+      </if>
+      <if test="rulecode != null">
+        ruleCode = #{rulecode,jdbcType=VARCHAR},
+      </if>
+      <if test="template != null">
+        template = #{template,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldnames != null">
+        fieldNames = #{fieldnames,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isActive = #{isactive,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruledescribe != null">
+        ruleDescribe = #{ruledescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitiveRule">
+    update c_data_sensitive_rule
+    set ruleName = #{rulename,jdbcType=VARCHAR},
+      ruleCode = #{rulecode,jdbcType=VARCHAR},
+      template = #{template,jdbcType=VARCHAR},
+      fieldNames = #{fieldnames,jdbcType=VARCHAR},
+      isActive = #{isactive,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      ruleDescribe = #{ruledescribe,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.DataSensitiveRule">
+    update c_data_sensitive_rule
+    set ruleName = #{rulename,jdbcType=VARCHAR},
+      ruleCode = #{rulecode,jdbcType=VARCHAR},
+      template = #{template,jdbcType=VARCHAR},
+      fieldNames = #{fieldnames,jdbcType=VARCHAR},
+      isActive = #{isactive,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

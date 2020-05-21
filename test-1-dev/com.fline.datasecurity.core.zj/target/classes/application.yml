@@ -1,0 +1,23 @@
+server:
+  servlet:
+    context-path: /webdemo
+spring:
+  profiles:
+    active: 
+    - 'dev'
+  application:
+    name: webdemo
+  cache:
+    type: redis
+    redis:
+      key-prefix: ${spring.application.name}
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  messages:
+    basename: i18n/messages
+# Mybatis - plus 配置
+mybatis-plus:
+  config-location: classpath:dao/mybatis-config.xml
+  mapper-locations: classpath*:dao/mapper/*.xml

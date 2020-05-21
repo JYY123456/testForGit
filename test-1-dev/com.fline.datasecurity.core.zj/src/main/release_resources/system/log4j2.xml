@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration
+	xmlns="http://logging.apache.org/log4j/2.0/config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://logging.apache.org/log4j/2.0/config
+						http://logging.apache.org/log4j/2.0/config">
+
+	<Appenders>
+		<!-- 控制台输出配置 -->
+		<Console name="console">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss} %level %thread %c %m %n" />
+		</Console>
+		<!-- 日志文件 -->
+		<File name="file" fileName="logs/fline_app.log">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss} %level %thread %c %m %n" />
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<!-- 业务日志 -->
+		<Logger name="com.fline.fdmp" additivity="false" level="INFO">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<!-- 输出SQL语句以便于检查 -->
+		<Logger name="java.sql.Connection" level="DEBUG">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<Logger name="java.sql.Statement" level="DEBUG">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<!-- 调试系统环境专用Logger -->
+		<!-- 框架级别的日志 -->
+		<Logger name="org.springframework" additivity="false"
+			level="ERROR">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<Logger name="org.hibernate" additivity="false" level="ERROR">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<Logger name="org.mybatis" additivity="false" level="ERROR">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<Logger name="com.baomidou" level="ERROR">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<!-- 默认 -->
+		<Root level="INFO">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Root>
+	</Loggers>
+
+</Configuration>

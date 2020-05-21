@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.AuditApplyMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.AuditApply">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="AUDIT_ID" jdbcType="VARCHAR" property="auditId" />
+    <result column="EVENT_TYPE" jdbcType="VARCHAR" property="eventType" />
+    <result column="FIELDS" jdbcType="VARCHAR" property="fields" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="OBJECT_ID" jdbcType="VARCHAR" property="objectId" />
+    <result column="OBJECT_NAME" jdbcType="VARCHAR" property="objectName" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="AUDITOR" jdbcType="VARCHAR" property="auditor" />
+    <result column="ERRORMESSAGE" jdbcType="VARCHAR" property="errormessage" />
+    <result column="EXECUTIONDURATION" jdbcType="VARCHAR" property="executionduration" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, AUDIT_ID, EVENT_TYPE, FIELDS, STATUS, OBJECT_ID, OBJECT_NAME, USER_ID, MEMO, 
+    AUDITOR, ERRORMESSAGE, EXECUTIONDURATION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_audit_apply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_audit_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.AuditApply">
+    insert into c_audit_apply (id, AUDIT_ID, EVENT_TYPE, 
+      FIELDS, STATUS, OBJECT_ID, 
+      OBJECT_NAME, USER_ID, MEMO, 
+      AUDITOR, ERRORMESSAGE, EXECUTIONDURATION, 
+      CREATED_BY, CREATED_TIME, UPDATED_BY, 
+      UPDATED_TIME)
+    values (#{id,jdbcType=INTEGER}, #{auditId,jdbcType=VARCHAR}, #{eventType,jdbcType=VARCHAR}, 
+      #{fields,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{objectId,jdbcType=VARCHAR}, 
+      #{objectName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{auditor,jdbcType=VARCHAR}, #{errormessage,jdbcType=VARCHAR}, #{executionduration,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.AuditApply">
+    insert into c_audit_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="auditId != null">
+        AUDIT_ID,
+      </if>
+      <if test="eventType != null">
+        EVENT_TYPE,
+      </if>
+      <if test="fields != null">
+        FIELDS,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="objectId != null">
+        OBJECT_ID,
+      </if>
+      <if test="objectName != null">
+        OBJECT_NAME,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="auditor != null">
+        AUDITOR,
+      </if>
+      <if test="errormessage != null">
+        ERRORMESSAGE,
+      </if>
+      <if test="executionduration != null">
+        EXECUTIONDURATION,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="auditId != null">
+        #{auditId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="fields != null">
+        #{fields,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null">
+        #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null">
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="errormessage != null">
+        #{errormessage,jdbcType=VARCHAR},
+      </if>
+      <if test="executionduration != null">
+        #{executionduration,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.AuditApply">
+    update c_audit_apply
+    <set>
+      <if test="auditId != null">
+        AUDIT_ID = #{auditId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        EVENT_TYPE = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="fields != null">
+        FIELDS = #{fields,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null">
+        OBJECT_ID = #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null">
+        OBJECT_NAME = #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null">
+        AUDITOR = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="errormessage != null">
+        ERRORMESSAGE = #{errormessage,jdbcType=VARCHAR},
+      </if>
+      <if test="executionduration != null">
+        EXECUTIONDURATION = #{executionduration,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.AuditApply">
+    update c_audit_apply
+    set AUDIT_ID = #{auditId,jdbcType=VARCHAR},
+      EVENT_TYPE = #{eventType,jdbcType=VARCHAR},
+      FIELDS = #{fields,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      OBJECT_ID = #{objectId,jdbcType=VARCHAR},
+      OBJECT_NAME = #{objectName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      AUDITOR = #{auditor,jdbcType=VARCHAR},
+      ERRORMESSAGE = #{errormessage,jdbcType=VARCHAR},
+      EXECUTIONDURATION = #{executionduration,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

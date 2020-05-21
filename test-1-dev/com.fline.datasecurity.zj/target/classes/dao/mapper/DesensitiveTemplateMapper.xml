@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fline.datasecurity.zj.dao.mapper.DesensitiveTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.fline.datasecurity.zj.dao.entity.DesensitiveTemplate">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tempName" jdbcType="VARCHAR" property="tempname" />
+    <result column="describe" jdbcType="INTEGER" property="describe" />
+    <result column="fields" jdbcType="VARCHAR" property="fields" />
+    <result column="desensitizationRule" jdbcType="VARCHAR" property="desensitizationrule" />
+    <result column="isActive" jdbcType="INTEGER" property="isactive" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tempName, describe, fields, desensitizationRule, isActive, CREATED_BY, CREATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_desensitization_template
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from c_desensitization_template
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTemplate">
+    insert into c_desensitization_template (id, tempName, describe, 
+      fields, desensitizationRule, isActive, 
+      CREATED_BY, CREATED_TIME)
+    values (#{id,jdbcType=INTEGER}, #{tempname,jdbcType=VARCHAR}, #{describe,jdbcType=INTEGER}, 
+      #{fields,jdbcType=VARCHAR}, #{desensitizationrule,jdbcType=VARCHAR}, #{isactive,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTemplate">
+    insert into c_desensitization_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tempname != null">
+        tempName,
+      </if>
+      <if test="describe != null">
+        describe,
+      </if>
+      <if test="fields != null">
+        fields,
+      </if>
+      <if test="desensitizationrule != null">
+        desensitizationRule,
+      </if>
+      <if test="isactive != null">
+        isActive,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tempname != null">
+        #{tempname,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=INTEGER},
+      </if>
+      <if test="fields != null">
+        #{fields,jdbcType=VARCHAR},
+      </if>
+      <if test="desensitizationrule != null">
+        #{desensitizationrule,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTemplate">
+    update c_desensitization_template
+    <set>
+      <if test="tempname != null">
+        tempName = #{tempname,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null">
+        describe = #{describe,jdbcType=INTEGER},
+      </if>
+      <if test="fields != null">
+        fields = #{fields,jdbcType=VARCHAR},
+      </if>
+      <if test="desensitizationrule != null">
+        desensitizationRule = #{desensitizationrule,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isActive = #{isactive,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fline.datasecurity.zj.dao.entity.DesensitiveTemplate">
+    update c_desensitization_template
+    set tempName = #{tempname,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=INTEGER},
+      fields = #{fields,jdbcType=VARCHAR},
+      desensitizationRule = #{desensitizationrule,jdbcType=VARCHAR},
+      isActive = #{isactive,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
